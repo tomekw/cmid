@@ -1,0 +1,18 @@
+{:input-objects {:AddPersonInput {:fields {:clientMutationId {:type String
+                                                              :description "ID mapping request to the response"}
+                                           :name {:type String
+                                                  :description "Name of the person"}}}}
+ :mutations {:addPerson {:type :AddPersonOutput
+                         :resolve :mutations/add-person
+                         :args {:input {:type :AddPersonInput}}}}
+ :objects {:AddPersonOutput {:fields {:clientMutationId {:type String
+                                                         :description "ID mapping request to the response"}
+                                      :result {:type :Person
+                                               :description "A new person"}}}
+           :Person {:fields {:id {:type String
+                                  :description "ID of the person"}
+                             :name {:type String
+                                    :description "Name of the person"}}}}
+ :queries {:people {:type (list :Person)
+                    :description "Return all the people"
+                    :resolve :queries/people}}}
